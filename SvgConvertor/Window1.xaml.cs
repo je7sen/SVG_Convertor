@@ -81,47 +81,54 @@ namespace SvgConvertor
         }
         void button4_Click(object sender, RoutedEventArgs e)
         {
-            TextBlock1.Text = "Connected...";
+            TextBlock1.Text = "Connected.";
 
             // TODO: Execute dos command?
             //Process.Start();
         }
         void button5_Click(object sender, RoutedEventArgs e)
         {
-            TextBlock1.Text = "Disconnected...";
+            TextBlock1.Text = "Disconnected.";
 
             // TODO: Execute dos command?
             //Process.Start();
         }
         void button6_Click(object sender, RoutedEventArgs e)
         {
-            TextBlock1.Text = "Moving X_axis Up...";
+            TextBlock1.Text = "Moving X_axis Up.";
 
             // TODO: Execute dos command?
             //Process.Start();
         }
         void button7_Click(object sender, RoutedEventArgs e)
         {
-            TextBlock1.Text = "Moving X_axis Down...";
+            TextBlock1.Text = "Moving X_axis Down.";
 
             // TODO: Execute dos command?
             //Process.Start();
         }
         void button8_Click(object sender, RoutedEventArgs e)
         {
-            TextBlock1.Text = "Moving Y_axis Left...";
+            TextBlock1.Text = "Moving Y_axis Left.";
 
             // TODO: Execute dos command?
             //Process.Start();
         }
         void button9_Click(object sender, RoutedEventArgs e)
         {
-            TextBlock1.Text = "Moving Y_axis Right...";
+            TextBlock1.Text = "Moving Y_axis Right.";
 
             // TODO: Execute dos command?
             //Process.Start();
         }
 
+        void button10_Click(object sender, RoutedEventArgs e)
+        {
+            TextBlock1.Text = "Set X_axis & Y_axis to 0.";
+
+            // TODO: Execute dos command?
+            //Process.Start();
+        }
 
         private void Image_ImageFailed(object sender, ExceptionRoutedEventArgs e)
         {

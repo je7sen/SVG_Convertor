@@ -9,7 +9,7 @@
 		</Grid.RowDefinitions>
 		
 		<WrapPanel Grid.Row="0">
-			<ToolBar Height="36" Width="297">
+			<ToolBar Height="36" Width="325">
 				<Button Name="button1" Click="button1_Click">
 					<Image Height="24" Width="24" Source="res\document_open.png" ToolTip="Open" />
 				</Button>
@@ -36,6 +36,9 @@
                 </Button>
                 <Button Name="button9" Click="button9_Click">
                     <Image Height="24" Width="24" Source="res\Button-Right-icon.png" ToolTip="Y_Right" />
+                </Button>
+                <Button Name="button10" Click="button10_Click">
+                    <Image Height="24" Width="24" Source="res\Set.png" ToolTip="SetToZero" />
                 </Button>
             </ToolBar>
 		</WrapPanel>
