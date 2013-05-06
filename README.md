@@ -16,6 +16,11 @@ Setup Configuration
 
 		copy RXTXcomm  to 'directory'\processing-1.5.1\java\lib\ext
 		copy both rxtxParallel.dll and rxtxSerial.dll to  'directory'\processing-1.5.1\java\bin
+		
+Q&A
+------
+1. If fail to compile, please configure compile output as your compatible mode. Project properties | Compiling | Target CPU.
+
 
 References
 ------------
