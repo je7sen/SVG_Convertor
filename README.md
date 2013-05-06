@@ -12,7 +12,7 @@ Requirement
 
 Setup Configuration
 -------------------
-- Install Processing IDE 1.5.1 from the link above and paste the folowing file from src folder 
+- Install Processing IDE 1.5.1 from the link above and paste the folowing file from lib folder 
 	copy RXTXcomm  to 'directory'\processing-1.5.1\java\lib\ext
 	copy both rxtxParallel.dll and rxtxSerial.dll to  'directory'\processing-1.5.1\java\bin
 
