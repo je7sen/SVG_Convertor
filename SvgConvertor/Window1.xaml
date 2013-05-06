@@ -19,7 +19,7 @@
 			</ToolBar>
 		</WrapPanel>
 		
-		<!-- TODO: Svg drawing area -->
+		<!-- Svg drawing area -->
 		<DockPanel Grid.Row="1" LastChildFill="true">
 			<Image x:Name="ImageControl" />
 		</DockPanel>
