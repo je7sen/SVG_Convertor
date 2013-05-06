@@ -84,9 +84,6 @@
     </Compile>
   </ItemGroup>
   <ItemGroup>
-    <Folder Include="res" />
-  </ItemGroup>
-  <ItemGroup>
     <Resource Include="res\connect.png" />
     <Resource Include="res\cursor.png" />
     <Resource Include="res\disconnect.png" />
@@ -98,6 +95,17 @@
   </ItemGroup>
   <ItemGroup>
     <Page Include="Window1.xaml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="res\Button-Down-icon.png" />
+    <Resource Include="res\Button-Next-icon.png" />
+    <Resource Include="res\Button-Right-icon.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="res\Button-Up.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="res\com.png" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

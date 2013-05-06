@@ -9,14 +9,35 @@
 		</Grid.RowDefinitions>
 		
 		<WrapPanel Grid.Row="0">
-			<ToolBar>
+			<ToolBar Height="36" Width="297">
 				<Button Name="button1" Click="button1_Click">
 					<Image Height="24" Width="24" Source="res\document_open.png" ToolTip="Open" />
 				</Button>
-				<Button Name="button2" Click="button2_Click">
-					<Image Height="24" Width="24" Source="res\pencil.png" ToolTip="Draw" />
+                <Button Name="button2" Click="button2_Click">
+                <Image Height="24" Width="24" Source="res\com.png" ToolTip="ComPort" />
+                </Button>
+                <Button Name="button3" Click="button3_Click">
+					<Image Height="24" Width="24" Source="res\plot.png" ToolTip="Plot" />
 				</Button>
-			</ToolBar>
+                <Button Name="button4" Click="button4_Click">
+                    <Image Height="24" Width="24" Source="res\connect.png" ToolTip="Connect" />
+                </Button>
+                <Button Name="button5" Click="button5_Click">
+                    <Image Height="24" Width="24" Source="res\disconnect.png" ToolTip="Disconnect"  />
+                </Button>
+                <Button Name="button6" Click="button6_Click">
+                    <Image Height="24" Width="24" Source="res\Button-Up.png" ToolTip="X_Up" />
+                </Button>
+                <Button Name="button7" Click="button7_Click">
+                    <Image Height="24" Width="24" Source="res\Button-Down-icon.png" ToolTip="X_Down" />
+                </Button>
+                <Button Name="button8" Click="button8_Click">
+                    <Image Height="24" Width="24" Source="res\Button-Next-icon.png" ToolTip="Y_Left" />
+                </Button>
+                <Button Name="button9" Click="button9_Click">
+                    <Image Height="24" Width="24" Source="res\Button-Right-icon.png" ToolTip="Y_Right" />
+                </Button>
+            </ToolBar>
 		</WrapPanel>
 		
 		<!-- Svg drawing area -->
