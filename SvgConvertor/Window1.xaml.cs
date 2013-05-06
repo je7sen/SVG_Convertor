@@ -24,6 +24,11 @@ namespace SvgConvertor
 	/// </summary>
 	public partial class Window1 : Window
 	{
+		/// <summary>
+		/// Svg full file name with path use to send to plotter.
+		/// </summary>
+		private string fileName;
+		
 		public Window1()
 		{
 			InitializeComponent();
@@ -32,6 +37,15 @@ namespace SvgConvertor
 		void button1_Click(object sender, RoutedEventArgs e)
 		{
 			System.Diagnostics.Debug.WriteLine("Opening file...");
+			Microsoft.Win32.OpenFileDialog dialog = new Microsoft.Win32.OpenFileDialog();
+            dialog.DefaultExt = ".svg";
+            dialog.Filter = "Svg (.svg)|*.svg";
+            if (dialog.ShowDialog() == true)
+            {
+                // TODO: Load into drawing area?
+                fileName = dialog.FileName;
+                System.Diagnostics.Debug.WriteLine(fileName);
+            }
 		}
 		
 		void button2_Click(object sender, RoutedEventArgs e)
