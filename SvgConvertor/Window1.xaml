@@ -41,12 +41,14 @@
                     <Image Height="24" Width="24" Source="res\Set.png" ToolTip="SetToZero" />
                 </Button>
             </ToolBar>
-		</WrapPanel>
+            <TextBlock Text="COM:" />
+            <ComboBox x:Name="Combobox1" />
+        </WrapPanel>
 		
 		<!-- Svg drawing area -->
 		<DockPanel Grid.Row="1" LastChildFill="true">
 			<Image x:Name="ImageControl" />
-		</DockPanel>
+        </DockPanel>
 		
 		<StatusBar Grid.Row="2">
 			<StatusBarItem>

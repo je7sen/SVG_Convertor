@@ -10,6 +10,7 @@ using System;
 using System.Collections.Generic;
 using System.Diagnostics;
 using System.IO;
+using System.IO.Ports;
 using System.Text;
 using System.Windows;
 using System.Windows.Controls;
@@ -77,8 +78,9 @@ namespace SvgConvertor
         {
             TextBlock1.Text = "Connected to Com";
 
-            // TODO: Execute dos command?
-            //Process.Start();
+            string[] ports = SerialPort.GetPortNames();
+            foreach (string port in ports)
+                Combobox1.Items.Add(new TextBlock { Text = port });
         }
         void button3_Click(object sender, RoutedEventArgs e)
         {
