@@ -21,14 +21,12 @@
 		
 		<!-- TODO: Svg drawing area -->
 		<DockPanel Grid.Row="1" LastChildFill="true">
+			<Image x:Name="ImageControl" />
 		</DockPanel>
 		
 		<StatusBar Grid.Row="2">
 			<StatusBarItem>
-				<TextBlock Text="Ready" />
-			</StatusBarItem>
-			<StatusBarItem HorizontalAlignment="Right">
-				<TextBlock Text="Items" />
+				<TextBlock x:Name="TextBlock1" Text="Ready" />
 			</StatusBarItem>
 		</StatusBar>
 	</Grid>
