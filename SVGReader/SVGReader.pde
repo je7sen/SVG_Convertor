@@ -24,6 +24,7 @@
  *  The SVG vector graphics file type is specified by and belongs to W3C
  */
 import processing.serial.*;
+import java.io.*;
 
 //////////////////////////////////////////////
 // Set these variables directly before running
@@ -812,3 +813,4 @@ void draw() {
   
   noLoop(); // only do it once
 }
+
