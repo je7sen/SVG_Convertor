@@ -34,3 +34,5 @@ References
 ------------
 - [ProcessingIDE](http://processing.org/)
 - [Configure Serial Input for ProcessingIDE](http://forum.processing.org/topic/how-do-i-install-rxtx-2-2pre1-jar-on-windows-7#25080000000981023)
+- [FamFamFam Icon Collection](http://www.famfamfam.com/)
+- [Xamalot](http://www.xamalot.com/) - Free vector graphics.
