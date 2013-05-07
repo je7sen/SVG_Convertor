@@ -10,11 +10,11 @@
 		
 		<WrapPanel Grid.Row="0">
 			<ToolBar Height="36" Width="325">
-				<Button Name="button1" Click="button1_Click">
-					<Image Height="24" Width="24" Source="res\document_open.png" ToolTip="Open" />
-				</Button>
+                <Button Name="button1" Click="button1_Click">
+                    <Image Height="24" Width="24" Source="res\document_open.png" ToolTip="Open" />
+                </Button>
                 <Button Name="button2" Click="button2_Click">
-                <Image Height="24" Width="24" Source="res\com.png" ToolTip="ComPort" />
+                <Image Height="24" Width="24" Source="res\com.png" ToolTip="SetCOM" RenderTransformOrigin="12.708,0.812" />
                 </Button>
                 <Button Name="button3" Click="button3_Click">
 					<Image Height="24" Width="24" Source="res\plot.png" ToolTip="Plot" />
@@ -41,8 +41,8 @@
                     <Image Height="24" Width="24" Source="res\Set.png" ToolTip="SetToZero" />
                 </Button>
             </ToolBar>
-            <TextBlock Text="COM:" />
-            <ComboBox x:Name="Combobox1" />
+            <TextBlock Text="COM:" Height="22" FontWeight="Bold" FontSize="16" HorizontalAlignment="Left" />
+           <ComboBox x:Name="Combobox1" RenderTransformOrigin="0.476,0.472" Width="21" />
         </WrapPanel>
 		
 		<!-- Svg drawing area -->

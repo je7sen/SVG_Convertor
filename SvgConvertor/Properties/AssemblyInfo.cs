@@ -15,7 +15,7 @@ using System.Runtime.InteropServices;
 [assembly: AssemblyCompany("")]
 [assembly: AssemblyProduct("SvgConvertor")]
 [assembly: AssemblyCopyright("Copyright 2013")]
-[assembly: AssemblyTrademark("")]
+[assembly: AssemblyTrademark("Je7")]
 [assembly: AssemblyCulture("")]
 
 // This sets the default COM visibility of types in the assembly to invisible.

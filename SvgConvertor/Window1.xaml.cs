@@ -1,6 +1,6 @@
 ﻿/*
- * Created by SharpDevelop.
- * User: yeang-shing.then
+ * Created by Visual Studio 2010
+ * User: je7sen Then
  * Date: 05/06/2013
  * Time: 16:24
  * 
@@ -11,6 +11,7 @@ using System.Collections.Generic;
 using System.Diagnostics;
 using System.IO;
 using System.IO.Ports;
+using System.Linq;
 using System.Text;
 using System.Windows;
 using System.Windows.Controls;
@@ -18,6 +19,8 @@ using System.Windows.Data;
 using System.Windows.Documents;
 using System.Windows.Input;
 using System.Windows.Media;
+
+
 
 using Svg2Xaml;
 
@@ -28,25 +31,52 @@ namespace SvgConvertor
 	/// </summary>
 	public partial class Window1 : Window
 	{
-		/// <summary>
-		/// Svg full file name with path use to send to plotter.
-		/// </summary>
-		private string fileName;
+        #region localvariable
+        /// <summary>
+        /// Svg full file name with path use to send to plotter.
+        /// </summary>
+        private string fileName;
         /// <summary>
         /// The directory where svg file stored inside.
         /// </summary>
         private string directory;
+        /// <summary>
+        /// <"SerialPort">
+        /// </summary>
+        public string comport;
+        static SerialPort SPort;
+        static Boolean portstat = false;
+        #endregion
 		
-		public Window1()
-		{
-			InitializeComponent();
-		}
 
+
+       
+        #region Initialisation
+        public Window1()
+        {
+            InitializeComponent();
+            /// get COM PORT
+            try
+            {
+                string[] ports = SerialPort.GetPortNames();
+                foreach (string port in ports)
+                    Combobox1.Items.Add(new TextBlock { Text = port });
+            }
+
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message);
+                throw ex;
+            }
+
+        }
+        #endregion
+        
         #region Events
         void button1_Click(object sender, RoutedEventArgs e)
 		{
 			TextBlock1.Text = "Opening file...";
-			
+            		
 			try
 			{
 				Microsoft.Win32.OpenFileDialog dialog = new Microsoft.Win32.OpenFileDialog();
@@ -76,11 +106,17 @@ namespace SvgConvertor
 		}
         void button2_Click(object sender, RoutedEventArgs e)
         {
-            TextBlock1.Text = "Connected to Com";
+            
+            if (Combobox1.SelectedIndex > -1)
+            {
+                comport = Combobox1.Text;
+                TextBlock1.Text = comport + " selected.";
+            }
 
-            string[] ports = SerialPort.GetPortNames();
-            foreach (string port in ports)
-                Combobox1.Items.Add(new TextBlock { Text = port });
+            TextBlock1.Text = "COM set to " + comport;
+            ReWritePDE();
+            
+            
         }
         void button3_Click(object sender, RoutedEventArgs e)
         {
@@ -140,6 +176,7 @@ namespace SvgConvertor
 
         }
         #endregion
+       
 
         #region Methods
         /// <summary>
@@ -200,6 +237,40 @@ namespace SvgConvertor
             if (index > -1) output = fullPath.Substring(0, index);
 
             return output;
+        }
+        private void ReWritePDE()
+        {
+            try
+            {
+                string f = @"E:\processing-2.0b8\test\test.pde";
+
+                // 1. Programmically compose pde script with all variable value in the script then write to a place.
+                StreamReader reader = new StreamReader(f);
+                string line = string.Empty;
+                string output = string.Empty;
+                int lineNo = 0;
+                while ((line = reader.ReadLine()) != null)
+                {
+                    lineNo++;
+                    if (lineNo == 32)
+                        output += "final String serialPort = \"" + comport + "\";" + "\n";
+                    else
+                        output += line + "\n";
+                }
+                reader.Close();
+
+                StreamWriter writer = new StreamWriter(f, false);
+                writer.Write(output);
+                writer.Flush();
+                writer.Close();
+            }
+            catch (Exception)
+            {
+
+                throw;
+            }
+
+
         }
         #endregion
     }
