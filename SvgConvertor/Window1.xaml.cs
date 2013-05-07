@@ -13,6 +13,7 @@ using System.IO;
 using System.IO.Ports;
 using System.Linq;
 using System.Text;
+using System.Timers;
 using System.Threading;
 using System.Windows;
 using System.Windows.Controls;
@@ -20,8 +21,6 @@ using System.Windows.Data;
 using System.Windows.Documents;
 using System.Windows.Input;
 using System.Windows.Media;
-
-
 
 using Svg2Xaml;
 
@@ -158,10 +157,13 @@ namespace SvgConvertor
         {
             TextBlock1.Text = "Moving X_axis Up.";
 
-            //send up signal to serial port
-            Thread.Sleep(200);
-            SPort.WriteLine("U");
-            SPort.WriteLine("\n");
+            
+                //send up signal to serial port
+           
+                Thread.Sleep(200);
+                SPort.WriteLine("U");
+                SPort.WriteLine("\n");
+            
         }
         void button7_Click(object sender, RoutedEventArgs e)
         {
@@ -203,6 +205,9 @@ namespace SvgConvertor
         {
 
         }
+        
+       
+
         #endregion
        
 

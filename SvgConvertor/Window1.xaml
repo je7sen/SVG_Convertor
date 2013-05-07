@@ -16,7 +16,6 @@
                 <Button x:Name="button2" Click="button2_Click">
                     <Image Height="24" Width="24" Source="res\com.png" ToolTip="SetCOM" RenderTransformOrigin="12.708,0.812" />
                 </Button>
-                
                 <ComboBox x:Name="Combobox1" RenderTransformOrigin="0.476,0.472" Width="52" IsReadOnly="True" IsSynchronizedWithCurrentItem="False" Margin="0,4.52" />
                 <Button x:Name="button3" Click="button3_Click">
                     <Image Height="24" Width="24" Source="res\plot.png" ToolTip="Plot" />
