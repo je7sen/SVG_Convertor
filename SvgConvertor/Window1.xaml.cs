@@ -13,6 +13,7 @@ using System.IO;
 using System.IO.Ports;
 using System.Linq;
 using System.Text;
+using System.Threading;
 using System.Windows;
 using System.Windows.Controls;
 using System.Windows.Data;
@@ -125,51 +126,78 @@ namespace SvgConvertor
         void button4_Click(object sender, RoutedEventArgs e)
         {
             TextBlock1.Text = "Connected.";
+            
+                //create serial port configuration
+                SPort = new SerialPort(comport, 9600, Parity.None, 8, StopBits.One);
+                SPort.ReadTimeout = 500;
+                SPort.WriteTimeout = 500;
+                SPort.Open();
+                portstat = true;
 
-            // TODO: Execute dos command?
-            //Process.Start();
+                //delay 200ms and send start signal to serial port
+                Thread.Sleep(200);
+                SPort.WriteLine("S");
+                SPort.WriteLine("\n");
+                Thread.Sleep(200);
+
         }
         void button5_Click(object sender, RoutedEventArgs e)
         {
             TextBlock1.Text = "Disconnected.";
+           
+            //delay 200ms then send End signal to serial port
+            Thread.Sleep(200);
+            SPort.WriteLine("T");
+            SPort.WriteLine("\n");
+            portstat = false;
+            //close serial port
+            SPort.Close();
 
-            // TODO: Execute dos command?
-            //Process.Start();
         }
         void button6_Click(object sender, RoutedEventArgs e)
         {
             TextBlock1.Text = "Moving X_axis Up.";
 
-            // TODO: Execute dos command?
-            //Process.Start();
+            //send up signal to serial port
+            Thread.Sleep(200);
+            SPort.WriteLine("U");
+            SPort.WriteLine("\n");
         }
         void button7_Click(object sender, RoutedEventArgs e)
         {
             TextBlock1.Text = "Moving X_axis Down.";
 
-            // TODO: Execute dos command?
-            //Process.Start();
+            //send Down signal to serial port
+            Thread.Sleep(200);
+            SPort.WriteLine("X");
+            SPort.WriteLine("\n");
         }
         void button8_Click(object sender, RoutedEventArgs e)
         {
             TextBlock1.Text = "Moving Y_axis Left.";
 
-            // TODO: Execute dos command?
-            //Process.Start();
+            //send left signal to serial port
+            Thread.Sleep(200);
+            SPort.WriteLine("L");
+            SPort.WriteLine("\n");
         }
         void button9_Click(object sender, RoutedEventArgs e)
         {
             TextBlock1.Text = "Moving Y_axis Right.";
 
-            // TODO: Execute dos command?
-            //Process.Start();
+            //send Right signal to serial port
+            Thread.Sleep(200);
+            SPort.WriteLine("R");
+            SPort.WriteLine("\n");
         }
         void button10_Click(object sender, RoutedEventArgs e)
         {
             TextBlock1.Text = "Set X_axis & Y_axis to 0.";
 
-            // TODO: Execute dos command?
-            //Process.Start();
+            //send set signal to serial port
+            Thread.Sleep(200);
+            SPort.WriteLine("E");
+            SPort.WriteLine("\n");
         }
         private void Image_ImageFailed(object sender, ExceptionRoutedEventArgs e)
         {
