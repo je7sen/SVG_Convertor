@@ -29,7 +29,7 @@ import java.io.*;
 //////////////////////////////////////////////
 // Set these variables directly before running
 //////////////////////////////////////////////
-final String serialPort = "COM4"; // the name of the USB port
+final String serialPort = "COM9"; // the name of the USB port
 final String filePath = "C:/Users/je7sen/Desktop/test2.svg"; // the SVG file path
 final double precision = 2; // precision for interpolating curves (smaller = finer)
 final double maxdim = 50.0; // maximum dimension in mm (either height or width)
