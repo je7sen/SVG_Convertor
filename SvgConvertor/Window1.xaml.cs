@@ -120,38 +120,50 @@ namespace SvgConvertor
         }
         void button3_Click(object sender, RoutedEventArgs e)
         {
+
             SendToPlot();
         }
         void button4_Click(object sender, RoutedEventArgs e)
         {
-            TextBlock1.Text = "Connected.";
             
-                //create serial port configuration
-                SPort = new SerialPort(comport, 9600, Parity.None, 8, StopBits.One);
-                SPort.ReadTimeout = 500;
-                SPort.WriteTimeout = 500;
-                SPort.Open();
-                portstat = true;
+            
+                if (comport !=null && portstat == false)
+                {
+                    //create serial port configuration
+                    SPort = new SerialPort(comport, 9600, Parity.None, 8, StopBits.One);
+                    SPort.ReadTimeout = 500;
+                    SPort.WriteTimeout = 500;
+                    SPort.Open();
+                    portstat = true;
+                    
+                    //delay 200ms and send start signal to serial port
+                    Thread.Sleep(200);
+                    SPort.WriteLine("S");
+                    SPort.WriteLine("\n");
+                    Thread.Sleep(200);
 
-                //delay 200ms and send start signal to serial port
-                Thread.Sleep(200);
-                SPort.WriteLine("S");
-                SPort.WriteLine("\n");
-                Thread.Sleep(200);
+                    TextBlock1.Text = "Connected.";
 
+                }
+           
         }
         void button5_Click(object sender, RoutedEventArgs e)
         {
-            TextBlock1.Text = "Disconnected.";
-           
-            //delay 200ms then send End signal to serial port
-            Thread.Sleep(200);
-            SPort.WriteLine("T");
-            SPort.WriteLine("\n");
-            portstat = false;
-            //close serial port
-            SPort.Close();
+            
+                if (portstat)
+                {
+                    //delay 200ms then send End signal to serial port
+                    Thread.Sleep(200);
+                    SPort.WriteLine("T");
+                    SPort.WriteLine("\n");
 
+                    //close serial port
+                    SPort.Close();
+                    portstat = false;
+
+                    TextBlock1.Text = "Disconnected.";
+                }
+            
         }
         void button6_Click(object sender, RoutedEventArgs e)
         {
@@ -205,9 +217,6 @@ namespace SvgConvertor
         {
 
         }
-        
-       
-
         #endregion
        
 
