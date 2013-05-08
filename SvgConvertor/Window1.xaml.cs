@@ -49,8 +49,6 @@ namespace SvgConvertor
         #endregion
 		
 
-
-       
         #region Initialisation
         public Window1()
         {
@@ -106,27 +104,26 @@ namespace SvgConvertor
 		}
         void button2_Click(object sender, RoutedEventArgs e)
         {
-            
+            TextBlock1.Text = "No COM is selected";
             if (Combobox1.SelectedIndex > -1)
             {
                 comport = Combobox1.Text;
-                TextBlock1.Text = comport + " selected.";
+                TextBlock1.Text = "COM set to " + comport;
+                ReWritePDE();
             }
-
-            TextBlock1.Text = "COM set to " + comport;
-            ReWritePDE();
-            
-            
+       
         }
         void button3_Click(object sender, RoutedEventArgs e)
         {
-
-            SendToPlot();
+            TextBlock1.Text = "No file is selected";
+            if (fileName != null)
+            {
+                SendToPlot();
+            }
         }
         void button4_Click(object sender, RoutedEventArgs e)
         {
-            
-            
+            TextBlock1.Text = "No COM is selected";
                 if (comport !=null && portstat == false)
                 {
                     //create serial port configuration
@@ -149,7 +146,7 @@ namespace SvgConvertor
         }
         void button5_Click(object sender, RoutedEventArgs e)
         {
-            
+            TextBlock1.Text = "No COM is selected";
                 if (portstat)
                 {
                     //delay 200ms then send End signal to serial port
@@ -167,51 +164,64 @@ namespace SvgConvertor
         }
         void button6_Click(object sender, RoutedEventArgs e)
         {
-            TextBlock1.Text = "Moving X_axis Up.";
-
-            
+            TextBlock1.Text = "No COM is selected";
+            if (portstat == true)
+            {
+                TextBlock1.Text = "Moving X_axis Up.";
                 //send up signal to serial port
-           
                 Thread.Sleep(200);
                 SPort.WriteLine("U");
                 SPort.WriteLine("\n");
+            }
             
         }
         void button7_Click(object sender, RoutedEventArgs e)
         {
-            TextBlock1.Text = "Moving X_axis Down.";
-
-            //send Down signal to serial port
-            Thread.Sleep(200);
-            SPort.WriteLine("X");
-            SPort.WriteLine("\n");
+            TextBlock1.Text = "No COM is selected";
+            if (portstat == true)
+            {
+                TextBlock1.Text = "Moving X_axis Down.";
+                //send Down signal to serial port
+                Thread.Sleep(200);
+                SPort.WriteLine("X");
+                SPort.WriteLine("\n");
+            }
         }
         void button8_Click(object sender, RoutedEventArgs e)
         {
-            TextBlock1.Text = "Moving Y_axis Left.";
-
-            //send left signal to serial port
-            Thread.Sleep(200);
-            SPort.WriteLine("L");
-            SPort.WriteLine("\n");
+            TextBlock1.Text = "No COM is selected";
+            if (portstat == true)
+            {
+                TextBlock1.Text = "Moving Y_axis Left.";
+                //send left signal to serial port
+                Thread.Sleep(200);
+                SPort.WriteLine("L");
+                SPort.WriteLine("\n");
+            }
         }
         void button9_Click(object sender, RoutedEventArgs e)
         {
-            TextBlock1.Text = "Moving Y_axis Right.";
-
-            //send Right signal to serial port
-            Thread.Sleep(200);
-            SPort.WriteLine("R");
-            SPort.WriteLine("\n");
+            TextBlock1.Text = "No COM is selected";
+            if (portstat == true)
+            {
+                TextBlock1.Text = "Moving Y_axis Right.";
+                //send Right signal to serial port
+                Thread.Sleep(200);
+                SPort.WriteLine("R");
+                SPort.WriteLine("\n");
+            }
         }
         void button10_Click(object sender, RoutedEventArgs e)
         {
-            TextBlock1.Text = "Set X_axis & Y_axis to 0.";
-
-            //send set signal to serial port
-            Thread.Sleep(200);
-            SPort.WriteLine("E");
-            SPort.WriteLine("\n");
+            TextBlock1.Text = "No COM is selected";
+            if (portstat == true)
+            {
+                TextBlock1.Text = "Set X_axis & Y_axis to 0.";
+                //send set signal to serial port
+                Thread.Sleep(200);
+                SPort.WriteLine("E");
+                SPort.WriteLine("\n");
+            }
         }
         private void Image_ImageFailed(object sender, ExceptionRoutedEventArgs e)
         {
