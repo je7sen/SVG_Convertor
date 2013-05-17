@@ -11,11 +11,11 @@
  *  Does not yet support "transform" commands, though it would be
  *  oh so simple to add this.
  *  
- *  Copyright 2012 Eric Heisler
+ *  Copyright 2012 Eric Heisler && 2013 Jetsen Then
  *  This program is free software: you can redistribute it and/or modify
  *  it under the terms of the GNU General Public License version 3 as published by
  *  the Free Software Foundation.
- *  Redistribute by Je7sen 2013
+ *
  *  This program is distributed in the hope that it will be useful,
  *  but WITHOUT ANY WARRANTY; without even the implied warranty of
  *  MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
@@ -29,8 +29,8 @@ import java.io.*;
 //////////////////////////////////////////////
 // Set these variables directly before running
 //////////////////////////////////////////////
-final String serialPort = "COM9"; // the name of the USB port
-final String filePath = "C:/Users/je7sen/Desktop/test2.svg"; // the SVG file path
+final String serialPort = "COM4";
+final String filePath = "C:\\Users\\je7sen\\Desktop\\test.svg";
 final double precision = 2; // precision for interpolating curves (smaller = finer)
 final double maxdim = 50.0; // maximum dimension in mm (either height or width)
 boolean sendIt = false; // true=sends the data, false=just draws to screen
@@ -580,28 +580,35 @@ class Point {
 void sendData() {
   // first rescale and translate the data
   // find max and min data
-  double minx = 1e10;
-  double maxx = -1e10;
-  double miny = 1e10;
-  double maxy = -1e10;
-  double x, y, scl;
+  /*
+    double minx = 1e10;
+    double maxx = -1e10;
+    double miny = 1e10;
+    double maxy = -1e10;
+    double x, y, scl;
+    for (int i=0; i<allpoints.size(); i++) {
+      x = allpoints.get(i).x;
+      y = allpoints.get(i).y;
+      if(x > maxx){ maxx = x; }
+      if(x < minx){ minx = x; }
+      if(y > maxy){ maxy = y; }
+      if(y < miny){ miny = y; }
+    }
+    if(maxy-miny > maxx-minx){
+      scl = maxdim/(maxy-miny);
+    }else{
+      scl = maxdim/(maxx-minx);
+    }
+    for (int i=0; i<allpoints.size(); i++) {
+      allpoints.get(i).x = scl*(allpoints.get(i).x - minx);
+      allpoints.get(i).y = scl*(allpoints.get(i).y - miny);
+    }
+  */
+  ///change the size of plotting same as in the inskape file
   for (int i=0; i<allpoints.size(); i++) {
-    x = allpoints.get(i).x;
-    y = allpoints.get(i).y;
-    if(x > maxx){ maxx = x; }
-    if(x < minx){ minx = x; }
-    if(y > maxy){ maxy = y; }
-    if(y < miny){ miny = y; }
-  }
-  if(maxy-miny > maxx-minx){
-    scl = maxdim/(maxy-miny);
-  }else{
-    scl = maxdim/(maxx-minx);
-  }
-  for (int i=0; i<allpoints.size(); i++) {
-    allpoints.get(i).x = scl*(allpoints.get(i).x - minx);
-    allpoints.get(i).y = scl*(allpoints.get(i).y - miny);
-  }
+      allpoints.get(i).x = (allpoints.get(i).x / 3.35);
+      allpoints.get(i).y = (allpoints.get(i).y / 3.01);
+    }
   
   // Then send the data 
   int timeLimit = 0;
@@ -619,7 +626,7 @@ void sendData() {
   // signal to begin 
   sPort.write('S');
   println("serial port write 'S' ");
- delay(150);
+ delay(180);
   println(sPort.available());
   while (sPort.available () > 0)
   {
@@ -635,17 +642,17 @@ void sendData() {
  
   sPort.write('0');
       println("xdat at: first = 0");
-      delay(150);
+      delay(180);
   sPort.write('.');
-    delay(150);
+    delay(180);
     println("serial port write '.' ");
     
     sPort.write('0');
       println("ydat at: first = 0");
-      delay(150);
+      delay(180);
     
     sPort.write('.');
-    delay(150);
+    delay(180);
     println("serial port write '.' ");
     
     
@@ -654,15 +661,15 @@ void sendData() {
   // send each point
   for(int i=0; i<allpoints.size(); i++){
     sPort.read();
-          delay(150);
+          delay(180);
     // if there is a z change, do that first
     for(int j=0; j<zchanges.size(); j++){
       sPort.read();
-          delay(150);
+          delay(180);
       if ((zchanges.get(j) == i || zchanges.get(j) == -i) && i > 0) {
         if (zchanges.get(j) == i) {
           sPort.read();
-          delay(150);
+          delay(180);
           sPort.write('A'); // this moves the pen up
           println("serial port write 'A' ");
           delay(150);
@@ -670,10 +677,10 @@ void sendData() {
         }
         else {
           sPort.read();
-          delay(150);
+          delay(180);
           sPort.write('Z'); // this moves the pen down
           println("serial port write 'Z' ");
-          delay(150);
+          delay(180);
          
         }
         timeLimit = 0;
@@ -690,12 +697,12 @@ void sendData() {
       
       sPort.write(xdat.charAt(j));
       println("xdat at: "+j+" = "+xdat.charAt(j));
-      delay(150);
+      delay(180);
       
     }
     sPort.write('.');
     println("serial port write '.' ");
-    delay(150);
+    delay(180);
     
     
     timeLimit = 0;
@@ -711,12 +718,12 @@ void sendData() {
       
       sPort.write(ydat.charAt(j));
       println("ydat at: "+j+" = "+ydat.charAt(j));
-      delay(150);
+      delay(180);
       
     }
     
     sPort.write('.');
-    delay(150);
+    delay(180);
     println("serial port write '.' ");
     timeLimit = 0;
     
@@ -736,10 +743,10 @@ void sendData() {
   // now we have sent all of the data. Yay!
   // signal to end 
   sPort.read();
-  delay(150);
+  delay(180);
   sPort.write('T');
   println("serial port write 'T' ");
-  delay(150);
+  delay(180);
   
   
 }
@@ -813,4 +820,3 @@ void draw() {
   
   noLoop(); // only do it once
 }
-
