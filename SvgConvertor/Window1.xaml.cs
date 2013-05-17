@@ -240,7 +240,7 @@ namespace SvgConvertor
             {
                 // TODO: make it can be configurable
                 TextBlock1.Text = "Start drawing...";
-                string f = @"E:\MyProjects\SVG_Convertor\SVGReader\SVGReader.pde";
+                string f = @"E:\processing-2.0b8\test\test.pde";
 
                 // 1. Programmically compose pde script with all variable value in the script then write to a place.
                 StreamReader reader = new StreamReader(f);
@@ -294,7 +294,7 @@ namespace SvgConvertor
         {
             try
             {
-                string f = @"E:\MyProjects\SVG_Convertor\SVGReader\SVGReader.pde";
+                string f = @"E:\processing-2.0b8\test\test.pde";
 
                 // 1. Programmically compose pde script with all variable value in the script then write to a place.
                 StreamReader reader = new StreamReader(f);

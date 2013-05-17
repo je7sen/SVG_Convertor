@@ -30,7 +30,7 @@ import java.io.*;
 // Set these variables directly before running
 //////////////////////////////////////////////
 final String serialPort = "COM4";
-final String filePath = "C:\\Users\\je7sen\\Desktop\\test.svg";
+final String filePath = "C:\\Users\\je7sen\\Desktop\\test2.svg";
 final double precision = 2; // precision for interpolating curves (smaller = finer)
 final double maxdim = 50.0; // maximum dimension in mm (either height or width)
 boolean sendIt = false; // true=sends the data, false=just draws to screen
