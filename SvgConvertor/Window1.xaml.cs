@@ -7,6 +7,7 @@
  * To change this template use Tools | Options | Coding | Edit Standard Headers.
  */
 using System;
+using System.Configuration;
 using System.Collections.Generic;
 using System.Diagnostics;
 using System.IO;
@@ -37,10 +38,6 @@ namespace SvgConvertor
 		/// </summary>
 		private string fileName;
 		/// <summary>
-		/// The directory where svg file stored inside.
-		/// </summary>
-		private string directory;
-		/// <summary>
 		/// <"SerialPort">
 		/// </summary>
 		public string comport;
@@ -53,13 +50,12 @@ namespace SvgConvertor
 		{
 			InitializeComponent();			
 			InitializeUI();
-
 		}
 		/// <summary>
 		/// Initialize interface.
 		/// </summary>
 		private void InitializeUI()
-		{
+		{			
 			// get COM PORT
 			try {
 				string[] ports = SerialPort.GetPortNames();
@@ -68,7 +64,7 @@ namespace SvgConvertor
 
 			} catch (Exception ex) {
 				MessageBox.Show(ex.Message);
-				throw ex;
+				return;
 			}
 		}
 		#endregion
@@ -100,7 +96,7 @@ namespace SvgConvertor
 			catch(Exception ex)
 			{
 				MessageBox.Show(ex.Message);
-				throw ex;
+				return;
 			}
 		}
 		void button2_Click(object sender, RoutedEventArgs e)
@@ -224,10 +220,26 @@ namespace SvgConvertor
 				SPort.WriteLine("\n");
 			}
 		}
-		private void Image_ImageFailed(object sender, ExceptionRoutedEventArgs e)
+		void Image_ImageFailed(object sender, ExceptionRoutedEventArgs e)
 		{
 
 		}
+		/// <summary>
+		/// Save execute path into config file at user local folder.
+		/// </summary>
+		/// <param name="sender"></param>
+		/// <param name="e"></param>
+		void Window_Closed(object sender, EventArgs e)
+		{
+			System.Diagnostics.Debug.WriteLine("Saving config file...");
+			Settings.Default.Save();
+			Settings.Default.Reload();
+		}
+		void Window_Closing(object sender, System.ComponentModel.CancelEventArgs e)
+		{
+			
+		}
+		
 		#endregion
 
 		#region Methods
@@ -238,9 +250,9 @@ namespace SvgConvertor
 		{
 			try
 			{
-				// TODO: make it can be configurable
 				TextBlock1.Text = "Start drawing...";
-				string f = @"E:\processing-2.0b8\test\test.pde";
+				string f = @Settings.Default.ExePath + @"\test\test.pde";
+				System.Diagnostics.Debug.WriteLine(f);
 
 				// 1. Programmically compose pde script with all variable value in the script then write to a place.
 				StreamReader reader = new StreamReader(f);
@@ -264,23 +276,22 @@ namespace SvgConvertor
 
 				// 2. Execute command.
 				//string p = @"--sketch="+directory+" --output="+directory+"\build --force --run";
-				// TODO: Stored at app.config
-				string app = @"E:\processing-2.0b8\processing-java";
+				string app = @Settings.Default.ExePath + @"\processing-java";
+				System.Diagnostics.Debug.WriteLine(app);
 				string p = @"--sketch=test --output=build --force --run";
 				Process.Start(app, p);
 			}
 			catch (Exception ex)
 			{
 				MessageBox.Show(ex.Message);
-				throw ex;
-				//return; //you application may continue even error happen
+				return; //you application may continue even error happen
 			}
 		}
 		private void ReWritePDE()
 		{
 			try
 			{
-				string f = @"E:\processing-2.0b8\test\test.pde";
+				string f = @Settings.Default.ExePath + @"\test\test.pde";
 
 				// 1. Programmically compose pde script with all variable value in the script then write to a place.
 				StreamReader reader = new StreamReader(f);
@@ -304,7 +315,8 @@ namespace SvgConvertor
 			}
 			catch (Exception ex)
 			{
-				throw ex;
+				MessageBox.Show(ex.Message);
+				return;
 			}
 		}
 		#endregion
